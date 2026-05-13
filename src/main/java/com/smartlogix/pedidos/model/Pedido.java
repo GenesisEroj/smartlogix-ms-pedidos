@@ -3,13 +3,15 @@ package com.smartlogix.pedidos.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "pedidos")
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,6 +39,8 @@ public class Pedido {
     @PrePersist
     public void prePersist() {
         this.fechaCreacion = LocalDateTime.now();
-        this.estado = "PENDIENTE";
+        if (this.estado == null) {
+            this.estado = "PENDIENTE";
+        }
     }
 }
