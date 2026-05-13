@@ -30,6 +30,9 @@ public class Pedido {
     @Column(nullable = false)
     private Integer cantidad;
 
+    @Column
+    private Double total;
+
     @Column(nullable = false)
     private String estado;
 
@@ -41,6 +44,9 @@ public class Pedido {
         this.fechaCreacion = LocalDateTime.now();
         if (this.estado == null) {
             this.estado = "PENDIENTE";
+        }
+        if (this.total == null) {
+            this.total = 0.0;
         }
     }
 }
